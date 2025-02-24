@@ -3,6 +3,9 @@ package com.example.demo.Controller;
 import com.example.demo.Model.Usuario;
 import com.example.demo.Repository.PublicacionRepository;
 import com.example.demo.Repository.UsuarioRepository;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,19 +25,24 @@ public class PublicacionController {
 
     // Ruta para mostrar las publicaciones de un usuario
     @GetMapping("/publicaciones")
-    public String publicaciones(@RequestParam("usuario") String username, Model model) {
+    public String publicaciones(@RequestParam("usuario") String username, Model model, HttpSession session) {
         // Buscar el usuario por su nombre de usuario
         Optional<Usuario> optionalUsuario = usuarioRepository.findByUsername(username);
 
+        // Recuperar el usuario de la sesión
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        // Pasar el usuario y las publicaciones al modelo para que Thymeleaf lo use
+        model.addAttribute("usuario", usuario);
+
         if (optionalUsuario.isPresent()) {
             // Si el usuario existe, mostrar sus publicaciones
-            Usuario usuario = optionalUsuario.get();
-            model.addAttribute("usuario", usuario);
-            model.addAttribute("publicaciones", publicacionRepository.findByUsuarioOrderByFechaDesc(usuario));
+            Usuario usuarioB = optionalUsuario.get();
+            model.addAttribute("publicaciones", publicacionRepository.findByUsuarioOrderByFechaDesc(usuarioB));
         } else {
             // Si el usuario no existe, mostrar un mensaje
             model.addAttribute("error", "El usuario no existe");
-            return "error"; // Redirigir a una vista de error o alguna página
+            model.addAttribute("publicaciones", null); // No mostrar publicaciones
         }
 
         return "publicaciones"; // Vista que mostrará las publicaciones del usuario

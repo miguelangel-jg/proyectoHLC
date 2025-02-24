@@ -56,7 +56,7 @@ public class PerfilController {
         Publicacion publicacion = publicacionRepository.findById(id).orElse(null);
 
         // Verificar si la publicación existe y si pertenece al usuario
-        if (publicacion != null && publicacion.getUsuario().equals(usuario)) {
+        if (publicacion != null) {
             // Eliminar la publicación de la base de datos
             publicacionRepository.deleteById(id); // Usamos deleteById aquí
         }

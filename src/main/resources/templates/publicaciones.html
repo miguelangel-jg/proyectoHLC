@@ -204,7 +204,7 @@
     <header class="header">
         <div class="logo">
             <span>MiRedSocial</span>
-            <a class="" th:href="@{/home}">Inicio</a>
+            <a class="" th:href="@{/home}"><i class="bi bi-house text-white"></i></a>
         </div>
 
         <div class="profile">
@@ -214,15 +214,16 @@
         </div>
     </header>
 
-    <!-- Mostrar error si no hay usuario -->
-    <div th:if="${error}">
-        <div class="alert alert-danger text-center" role="alert">
-            <p th:text="${error}"></p>
-        </div>
-    </div>
+
 
     <!-- Mostrar publicaciones -->
     <div class="posts">
+        <!-- Mostrar error si no hay usuario -->
+        <div th:if="${error}">
+            <div class="alert alert-danger text-center" role="alert">
+                <p th:text="${error}"></p>
+            </div>
+        </div>
         <div th:if="${not #lists.isEmpty(publicaciones)}">
             <div th:each="publicacion : ${publicaciones}">
                 <div class="post">
@@ -236,11 +237,6 @@
                     <hr />
                     <div class="post-footer">
                         <span th:text="${#temporals.format(publicacion.fecha, 'yyyy-MM-dd HH:mm')}"></span>
-
-                        <form th:action="@{/perfil/eliminar}" method="post">
-                            <input type="hidden" name="id" th:value="${publicacion.id}" />
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
                     </div>
                 </div>
             </div>
