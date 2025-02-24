@@ -1,0 +1,5 @@
+-Acceso a perfil donde puedes ver y borrar publicaciones.
+-Usuario root que pueda publicar y borrar todas las publicaciones de cualquier Usuario
+-Buscador de Usuarios
+-(Opcional) Dar Me Gusta y poder quitar Me Gusta
+-(Opcional)Mostrar quien da me gusta en cada tweet 

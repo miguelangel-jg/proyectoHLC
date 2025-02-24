@@ -1,264 +1,264 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Home</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
 
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-    />
+<head>
+  <title>Home</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <style>
-      body {
-        background: linear-gradient(135deg, #1e1e2f, #3b3b58);
-        color: white;
-        font-family: "Poppins", sans-serif;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
 
-      /* Header */
-      .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 15px 30px;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      }
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e1e2f, #3b3b58);
+      color: white;
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-      .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-      }
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-      .logo i {
-        font-size: 1.8rem;
-        margin-right: 10px;
-      }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
 
-      /* Buscador */
-      .search-container {
-        flex: 1;
-        max-width: 400px;
-        position: relative;
-      }
+    .logo i {
+      font-size: 1.8rem;
+      margin-right: 10px;
+    }
 
-      .search-container input {
-        width: 100%;
-        padding: 10px 40px;
-        border-radius: 8px;
-        border: none;
-        background: rgba(255, 255, 255, 0.2);
-        color: white;
-      }
+    /* Buscador */
+    .search-container {
+      flex: 1;
+      max-width: 400px;
+      position: relative;
+    }
 
-      .search-container input::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-      }
+    .search-container input {
+      width: 100%;
+      padding: 10px 40px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
 
-      .search-container button {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        border: none;
-        background: transparent;
-        color: white;
-        font-size: 1rem;
-        cursor: pointer;
-      }
+    .search-container input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
 
-      /* Perfil */
-      .profile {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
+    .search-container button {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
 
-      .profile img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
+    /* Perfil */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-      .profile-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+    .profile img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
 
-      .logout-btn {
-        font-size: 0.8rem;
-        padding: 5px 10px;
-        background: rgba(255, 239, 239, 0.2);
-        border: none;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-        text-decoration: none;
-      }
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      .logout-btn:hover {
-        background: rgb(146, 0, 0);
-      }
+    .logout-btn {
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      background: rgba(255, 239, 239, 0.2);
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+    }
 
-      /* Estilo para los posts */
-      .posts {
-        padding: 20px;
-        width: 80%; /* Hace el contenedor del 80% del ancho */
-        margin: 0 auto; /* Centra el contenedor */
-      }
+    .logout-btn:hover {
+      background: rgb(146, 0, 0);
+    }
 
-      .post {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      }
+    /* Estilo para los posts */
+    .posts {
+      padding: 20px;
+      width: 80%;
+      /* Hace el contenedor del 80% del ancho */
+      margin: 0 auto;
+      /* Centra el contenedor */
+    }
 
-      .post-header {
-        display: flex;
-        justify-content: start;
-        align-items: baseline;
-        font-weight: bold;
-      }
+    .post {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-      .post-header span {
-        color: #00aaff;
-      }
+    .post-header {
+      display: flex;
+      justify-content: start;
+      align-items: baseline;
+      font-weight: bold;
+    }
 
-      .post-header hr {
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        margin: 10px 0;
-      }
+    .post-header span {
+      color: #00aaff;
+    }
 
-      .post-content {
-        font-size: 1rem;
-        color: #f1f1f1;
-      }
+    .post-header hr {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin: 10px 0;
+    }
 
-      .post-footer {
-        display: flex;
-        justify-content: flex-end;
-        font-size: 0.9rem;
-        color: #bbb;
-      }
+    .post-content {
+      font-size: 1rem;
+      color: #f1f1f1;
+    }
 
-      /* Formulario para nueva publicación */
-      .post-form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-        max-width: 600px;
-        background: rgba(255, 255, 255, 0.15);
-        padding: 10px;
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-      }
+    .post-footer {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 0.9rem;
+      color: #bbb;
+    }
 
-      .post-form input {
-        flex: 1;
-        padding: 10px;
-        border: none;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 5px;
-        color: white;
-      }
+    /* Formulario para nueva publicación */
+    .post-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
 
-      .post-form input::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-      }
+    .post-form input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      color: white;
+    }
 
-      .post-form button {
-        margin-left: 10px;
-        background: linear-gradient(90deg, #007bff, #6610f2);
-        border: none;
-        padding: 10px 15px;
-        border-radius: 8px;
-        color: white;
-        font-size: 1.2rem;
-        transition: 0.3s;
-      }
+    .post-form input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
 
-      .post-form button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.4);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="search-container">
-        <form th:action="@{/buscarUsuario}" method="get">
-          <button type="submit"><i class="bi-search"></i></button>
-          <input type="text" name="query" placeholder="Buscar usuario..." />
-        </form>
-      </div>
+    .post-form button {
+      margin-left: 10px;
+      background: linear-gradient(90deg, #007bff, #6610f2);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      color: white;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
 
-      <div class="logo">
-        <span>MiRedSocial</span>
-      </div>
+    .post-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.4);
+    }
+  </style>
+</head>
 
-      <div class="profile">
-        <i class="bi bi-person-circle fs-1 me-1"></i>
-        <div class="profile-info">
-          <span th:text="${usuario.username}" class="mb-1"></span>
-          <a class="logout-btn" th:href="@{/logout}">Cerrar sesión</a>
-        </div>
-      </div>
-    </header>
-
-    <!-- Mostrar alerta si hay un mensaje -->
-    <div th:if="${alert}" class="alert alert-success" role="alert">
-        <span th:text="${alert}"></span>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="search-container">
+      <form th:action="@{/buscarUsuario}" method="get">
+        <input type="text" name="query" placeholder="Buscar usuario..." />
+        <button type="submit"><i class="bi-search"></i></button>
+      </form>
     </div>
 
-    <!-- Mostrar publicaciones -->
-    <div class="posts">
-      <div th:each="publicacion : ${publicaciones}">
-        <div class="post">
-          <div class="post-header">
-            <i class="bi bi-person-circle me-2"></i><span th:text="${publicacion.id_user.username}"></span>
-          </div>
-          <hr />
-          <div class="post-content me-5 ms-5">
-            <p th:text="${publicacion.contenido}"></p>
-          </div>
-          <hr />
-          <div class="post-footer">
-            <span th:text="${#temporals.format(publicacion.fecha, 'yyyy-MM-dd HH:mm')}"></span>
-          </div>
+    <div class="logo">
+      <span>MiRedSocial</span>
+    </div>
+
+    <!-- Detalles del Perfil -->
+    <div class="profile">
+      <a class="perfil-btn" th:href="@{/perfil}"><i class="bi bi-person-circle fs-1 me-1 text-white"></i></a>
+      <div class="profile-info">
+        <span th:text="${usuario.username}" class="mb-1"></span>
+        <a class="logout-btn" th:href="@{/logout}">Cerrar sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mostrar alerta si hay un mensaje -->
+  <div th:if="${alert}" class="alert alert-success" role="alert">
+    <span th:text="${alert}"></span>
+  </div>
+
+  <!-- Mostrar publicaciones -->
+  <div class="posts">
+    <div th:each="publicacion : ${publicaciones}">
+      <div class="post">
+        <div class="post-header">
+          <i class="bi bi-person-circle me-2"></i><span th:text="${publicacion.id_user.username}"></span>
+        </div>
+        <hr />
+        <div class="post-content me-5 ms-5">
+          <p th:text="${publicacion.contenido}"></p>
+        </div>
+        <hr />
+        <div class="post-footer">
+          <span th:text="${#temporals.format(publicacion.fecha, 'yyyy-MM-dd HH:mm')}"></span>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Formulario para nueva publicación -->
-    <form th:action="@{/publicar}" method="post" class="post-form">
-      <input type="text" placeholder="Escribe algo..." name="contenido" required/>
-      <button type="submit"><i class="bi-plus"></i></button>
-    </form>
+  <!-- Formulario para nueva publicación -->
+  <form th:action="@{/publicar}" method="post" class="post-form">
+    <input type="text" placeholder="Escribe algo..." name="contenido" required />
+    <button type="submit"><i class="bi-plus"></i></button>
+  </form>
 
-    <!-- Bootstrap JS (opcional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  <!-- Bootstrap JS (opcional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

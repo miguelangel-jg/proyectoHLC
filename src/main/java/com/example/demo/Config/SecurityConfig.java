@@ -15,7 +15,7 @@ public class SecurityConfig {
                 http
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers("/login", "/register", "/registrar", "/loginUsuario",
-                                                                "/home", "/publicar",
+                                                                "/home", "/publicar", "/perfil",
                                                                 "/css/**", "/js/**", "/images/**")
                                                 .permitAll()) // Asegúrate de que todas las rutas de la aplicacion estan
                                                               // aqui
