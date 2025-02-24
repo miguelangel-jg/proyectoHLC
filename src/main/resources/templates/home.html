@@ -207,8 +207,9 @@
   <!-- Header -->
   <header class="header">
     <div class="search-container">
-      <form th:action="@{/buscarUsuario}" method="get">
-        <input type="text" name="query" placeholder="Buscar usuario..." />
+      <!-- Actualizar el action del formulario para redirigir a la ruta correcta con el usuario -->
+      <form th:action="@{/publicaciones}" method="get">
+        <input type="text" name="usuario" placeholder="Buscar usuario..." />
         <button type="submit"><i class="bi-search"></i></button>
       </form>
     </div>
