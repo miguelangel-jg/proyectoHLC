@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -61,18 +62,6 @@ public class HomeController {
         session.invalidate();
 
         return "redirect:/login"; // Redirigir al login
-    }
-
-    @GetMapping("/perfil")
-    public String perfil(HttpSession session, Model model) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-
-        if (usuario == null) {
-            return "redirect:/login";
-        }
-
-        model.addAttribute("usuario", usuario);
-        return "perfil"; // Asegúrate de que tienes una vista perfil.html en templates
     }
 
 }

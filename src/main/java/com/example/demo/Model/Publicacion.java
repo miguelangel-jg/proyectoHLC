@@ -77,4 +77,12 @@ public class Publicacion {
         this.usuario = usuario;
     }
 
+    public Usuario getUsuario() { // <-- Cambia el nombre del getter
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) { // <-- Cambia el nombre del setter
+        this.usuario = usuario;
+    }
+
 }

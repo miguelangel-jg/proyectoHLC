@@ -208,6 +208,7 @@
     <header class="header">
         <div class="logo">
             <span>MiRedSocial</span>
+            <a class="" th:href="@{/home}">Inicio</a>
         </div>
 
         <!-- Detalles del Perfil -->
@@ -223,7 +224,7 @@
         <div th:each="publicacion : ${publicaciones}">
             <div class="post">
                 <div class="post-header">
-                    <i class="bi bi-person-circle me-2"></i><span th:text="${publicacion.id_user.username}"></span>
+                    <i class="bi bi-person-circle me-2"></i><span th:text="${publicacion.usuario.username}"></span>
                 </div>
                 <hr />
                 <div class="post-content me-5 ms-5">
@@ -232,9 +233,19 @@
                 <hr />
                 <div class="post-footer">
                     <span th:text="${#temporals.format(publicacion.fecha, 'yyyy-MM-dd HH:mm')}"></span>
+
+                    <!-- Botón de eliminar publicación -->
+                    <form th:action="@{/perfil/eliminar}" method="post">
+                        <input type="hidden" name="id" th:value="${publicacion.id}" />
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+
                 </div>
             </div>
         </div>
+    </div>
+
+
     </div>
 
 
