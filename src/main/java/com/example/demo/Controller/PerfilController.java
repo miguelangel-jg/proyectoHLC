@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -43,7 +44,8 @@ public class PerfilController {
 
     // Método para eliminar una publicación
     @PostMapping("/perfil/eliminar")
-    public String eliminarPublicacion(@RequestParam Integer id, HttpSession session) {
+    public String eliminarPublicacion(@RequestParam Integer id, HttpSession session,
+            RedirectAttributes redirectAttributes) {
         // Obtener el usuario de la sesión
         Usuario usuario = (Usuario) session.getAttribute("usuario");
 
@@ -58,7 +60,9 @@ public class PerfilController {
         // Verificar si la publicación existe y si pertenece al usuario
         if (publicacion != null) {
             // Eliminar la publicación de la base de datos
+
             publicacionRepository.deleteById(id); // Usamos deleteById aquí
+            redirectAttributes.addFlashAttribute("alert", "Publicación eliminada correctamente.");
         }
 
         // Redirigir al perfil después de eliminar la publicación

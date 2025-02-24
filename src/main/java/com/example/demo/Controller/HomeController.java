@@ -63,4 +63,22 @@ public class HomeController {
         return "redirect:/login"; // Redirigir al login
     }
 
+    @GetMapping("/home/eliminar")
+    public String eliminarPublicacion(@RequestParam Integer id, HttpSession session,
+            RedirectAttributes redirectAttributes) {
+        // Buscar la publicación por ID
+        Publicacion publicacion = publicacionRepository.findById(id).orElse(null);
+
+        // Verificar si la publicación existe
+        if (publicacion != null) {
+            // Eliminar la publicación de la base de datos
+            publicacionRepository.deleteById(id); // Usamos deleteById aquí
+            redirectAttributes.addFlashAttribute("alert", "Publicación eliminada correctamente.");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "La publicación no existe.");
+        }
+
+        // Redirigir a /home después de eliminar la publicación
+        return "redirect:/home";
+    }
 }

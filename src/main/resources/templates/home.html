@@ -113,7 +113,7 @@
     /* Estilo para los posts */
     .posts {
       padding: 20px;
-      width: 80%;
+      width: 70%;
       /* Hace el contenedor del 80% del ancho */
       margin: 0 auto;
       /* Centra el contenedor */
@@ -207,7 +207,6 @@
   <!-- Header -->
   <header class="header">
     <div class="search-container">
-      <!-- Actualizar el action del formulario para redirigir a la ruta correcta con el usuario -->
       <form th:action="@{/publicaciones}" method="get">
         <input type="text" name="usuario" placeholder="Buscar usuario..." />
         <button type="submit"><i class="bi-search"></i></button>
@@ -248,8 +247,16 @@
         <div class="post-footer">
           <span th:text="${#temporals.format(publicacion.fecha, 'yyyy-MM-dd HH:mm')}"></span>
         </div>
+        <!-- Botón de eliminar solo para el usuario admin -->
+        <div class="text-end mt-2" th:if="${usuario.username == 'admin'}">
+          <form th:action="@{/home/eliminar}" method="get">
+            <input type="hidden" name="id" th:value="${publicacion.id}" />
+            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+          </form>
+        </div>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- Formulario para nueva publicación -->
