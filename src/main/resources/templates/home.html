@@ -227,13 +227,17 @@
     </div>
   </header>
 
-  <!-- Mostrar alerta si hay un mensaje -->
-  <div th:if="${alert}" class="alert alert-success" role="alert">
-    <span th:text="${alert}"></span>
-  </div>
+
 
   <!-- Mostrar publicaciones -->
   <div class="posts">
+    <!-- Mostrar alerta si hay un mensaje -->
+    <div th:if="${alert}" class="alert alert-success text-center">
+      <p th:text="${alert}"></p>
+    </div>
+    <div th:if="${error}" class="alert alert-danger">
+      <p th:text="${error}"></p>
+    </div>
     <div th:each="publicacion : ${publicaciones}">
       <div class="post">
         <div class="post-header">

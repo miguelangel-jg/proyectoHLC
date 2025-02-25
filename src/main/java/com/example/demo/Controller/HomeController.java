@@ -52,7 +52,7 @@ public class HomeController {
         publicacionRepository.save(publicacion);
 
         redirectAttributes.addFlashAttribute("alert", "¡Publicación realizada con éxito!");
-        return "home";
+        return "redirect:/home";
     }
 
     @GetMapping("/logout")

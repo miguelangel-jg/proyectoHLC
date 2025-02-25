@@ -221,6 +221,9 @@
 
     <!-- Mostrar publicaciones -->
     <div class="posts">
+        <div th:if="${alert}" class="alert alert-danger text-center">
+            <p th:text="${alert}"></p>
+        </div>
         <!-- Verifica si la lista de publicaciones está vacía -->
         <div th:if="${#lists.isEmpty(publicaciones)}">
             <p class="text-center text-white">Este usuario no tiene publicaciones.</p>
@@ -229,6 +232,7 @@
         <!-- Ver Publicaciones del usuario -->
         <div th:each="publicacion : ${publicaciones}" th:unless="${#lists.isEmpty(publicaciones)}">
             <div class="post">
+
                 <div class="post-header">
                     <i class="bi bi-person-circle me-2"></i>
                     <span th:text="${publicacion.usuario.username}"></span>
